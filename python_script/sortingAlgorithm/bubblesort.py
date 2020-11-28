@@ -15,7 +15,7 @@ data = []
 
 
 def drawData(data):
-    canvas.delete("all")
+    canvas.delete('all')
     c_height = 380
     c_width = 600
     x_width = c_width / (len(data)+1)
@@ -31,11 +31,12 @@ def drawData(data):
         canvas.create_rectangle(x0, y0, x1, y1, fill="red")
         canvas.create_text(x0+2, y0, anchor=SW, text=str(data[i]))
 
-    root.update_idletasks()
+    root.update()
 
 
 def generate():
     global data
+    data = []
     minVal = int(minEntry.get())
     maxVal = int(maxEntry.get())
     size = int(sizeEntry.get())
@@ -67,8 +68,8 @@ algMenu = ttk.Combobox(UiFrame, textvariable=selected_alg,
 algMenu.grid(row=0, column=1, padx=5, pady=5)
 algMenu.current(0)
 
-speedScale = Scale(UiFrame, from_=0.1, to=2.0, length=200, digits=2,
-                   resolution=0.2, orient=HORIZONTAL, label="Select Speed")
+speedScale = Scale(UiFrame, from_=0.05, to=2.0, length=200, digits=2,
+                   resolution=0.2, orient=HORIZONTAL, label="Slow down")
 
 speedScale.grid(row=0, column=2, padx=5, pady=5)
 
@@ -76,7 +77,7 @@ Button(UiFrame, text="Start", command=startAlgorith,
        bg='red').grid(row=0, column=3, padx=5, pady=5)
 # row[1]
 
-sizeEntry = Scale(UiFrame, from_=3, to=25,
+sizeEntry = Scale(UiFrame, from_=3, to=100,
                   resolution=1, orient=HORIZONTAL, label="Data Size")
 sizeEntry.grid(
     row=1, column=0, padx=5, pady=5)
